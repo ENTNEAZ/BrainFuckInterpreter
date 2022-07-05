@@ -11,6 +11,9 @@
 [	若指针所指字节的值为零，则向后跳转，跳转到其对应的]的下一个指令处
 ]	若指针所指字节的值不为零，则向前跳转，跳转到其对应的[的下一个指令处
 */
+
+extern bool isLegal(std::string);
+
 void safeMemory(std::vector<char>& memory, int memoryPointer) {
 	if (memoryPointer >= memory.size()) {
 		memory.resize(memoryPointer + 1);
@@ -19,6 +22,9 @@ void safeMemory(std::vector<char>& memory, int memoryPointer) {
 
 
 void interpreter(std::string str,bool outputError = true) {
+	if (!isLegal(str)) {
+		return;
+	}
 	std::vector<char> memory;
 	std::vector<int> stack;
 	int commandPointer = 0;
